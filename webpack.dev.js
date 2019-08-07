@@ -29,6 +29,13 @@ module.exports = merge(common, {
           'sass-loader', // compiles Sass to CSS
         ],
       },
+      {
+        test: /\.css$/,
+        loader: [
+          'style-loader', // add inline style to HTML head
+          'css-loader', // translates CSS into CommonJS
+        ],
+      },
     ],
   },
 });
