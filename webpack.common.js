@@ -1,4 +1,8 @@
 const path = require('path');
+const createStyledComponentsTransformer = require('typescript-plugin-styled-components')
+  .default;
+
+const styledComponentsTransformer = createStyledComponentsTransformer();
 
 module.exports = {
   entry: {
@@ -16,7 +20,15 @@ module.exports = {
         use: ['html-loader'],
       },
       // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
-      { test: /\.tsx?$/, loader: 'awesome-typescript-loader' },
+      {
+        test: /\.tsx?$/,
+        loader: 'awesome-typescript-loader',
+        options: {
+          getCustomTransformers: () => ({
+            before: [styledComponentsTransformer],
+          }),
+        },
+      },
       {
         test: /\.(svg|png|jpe?g|gif)$/,
         use: [
