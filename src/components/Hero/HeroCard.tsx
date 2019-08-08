@@ -2,6 +2,7 @@ import * as React from 'react';
 import { NavLink } from 'react-router-dom';
 import { Card, CardImage, CardTitle } from 'components/shared/Card';
 import useHeroCard from 'hooks/hero-card';
+import { httpToHttps } from 'utilities/helpers';
 const placeholder = require('images/placeholder.png');
 
 interface HeroCardProps {
@@ -11,7 +12,9 @@ interface HeroCardProps {
 }
 
 const HeroCard = (props: HeroCardProps) => {
-  const { url, active, configureActive } = useHeroCard(props.image);
+  const { url, active, configureActive } = useHeroCard(
+    httpToHttps(props.image)
+  );
   return (
     <NavLink
       to={`/heros/${props.id}`}
