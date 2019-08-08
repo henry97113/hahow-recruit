@@ -1,6 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { HeroAttributes } from 'models/response';
+import CustomLoader from 'components/shared/Loader';
 
 interface ButtonProps {
   paddingX?: string;
@@ -103,12 +104,8 @@ const HeroProfile = (props: HeroProfileProps) => {
     ).then(() => console.log('patched!'));
   };
   return (
-    <div className="block w-full border-solid border-4 border-gray-600 rounded p-8 sm:flex lg:px-32 relative">
-      {fetching && (
-        <div className="absolute inset-0 z-10 bg-gray-400 flex justify-center items-center">
-          <h3>Loading...</h3>
-        </div>
-      )}
+    <div className="block border-solid border-4 border-gray-600 rounded p-8 sm:flex lg:px-32 relative">
+      {fetching && <CustomLoader color="tomato" backgroundColor="#ccc" />}
       <div className="attr mb-8 sm:mb-0 sm:flex-1">
         {Object.keys(attr).map((name, index) => (
           <Attribute key={index}>
