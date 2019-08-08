@@ -42,9 +42,19 @@ const HeroProfile = (props: HeroProfileProps) => {
         {Object.keys(attr).map((name, index) => (
           <Attribute key={index}>
             <Text>{name.toUpperCase()}</Text>
-            <Button onClick={() => configureAttr(name, '+')}>+</Button>
+            <Button
+              disabled={pointsLeft === 0}
+              onClick={() => configureAttr(name, '+')}
+            >
+              +
+            </Button>
             <Text>{attr[name]}</Text>
-            <Button onClick={() => configureAttr(name, '-')}>-</Button>
+            <Button
+              disabled={attr[name] === 0}
+              onClick={() => configureAttr(name, '-')}
+            >
+              -
+            </Button>
           </Attribute>
         ))}
       </div>
