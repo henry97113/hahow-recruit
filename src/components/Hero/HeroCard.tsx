@@ -1,5 +1,7 @@
 import * as React from 'react';
-import styled, { ThemeContext } from 'styled-components';
+import styled from 'styled-components';
+import { NavLink } from 'react-router-dom';
+const imgPlaceholder = require('images/image placeholder.png');
 
 const Card = styled.div`
   border: 4px solid #718096;
@@ -11,17 +13,24 @@ const CardImage = styled.img`
   border-radius: 50%;
 `;
 
-interface HeroCardProps {}
+interface HeroCardProps {
+  id: string;
+  name: string;
+  image: string;
+}
 
 const HeroCard = (props: HeroCardProps) => {
   return (
-    <div className="w-full md:w-2/4 mb-2 lg:w-1/4 px-1">
+    <NavLink
+      to={`/heros/${props.id}`}
+      className="block w-full md:w-2/4 mb-2 lg:w-1/4 px-1"
+    >
       <Card className="p-8 flex flex-col justify-center items-center">
-        <CardImage src="https://fakeimg.pl/200/" />
-        <h2 className="mt-12 text-2xl">Hero Name</h2>
+        <CardImage src={props.image || imgPlaceholder} />
+        <h2 className="mt-12 text-2xl">{props.name}</h2>
       </Card>
-    </div>
+    </NavLink>
   );
 };
 
-export default HeroCard;
+export default React.memo(HeroCard);
