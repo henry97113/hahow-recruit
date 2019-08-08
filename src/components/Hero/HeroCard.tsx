@@ -8,11 +8,11 @@ interface CardProps {
 }
 
 const Card = styled.div<CardProps>`
-  /* border: 4px solid #718096; */
   border-width: 4px;
   border-style: solid;
   border-color: ${props => (props.active ? 'tomato' : '#718096')};
   border-radius: 4px;
+  color: ${props => (props.active ? 'tomato' : 'inherit')};
 `;
 
 const CardImage = styled.img`
