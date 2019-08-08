@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { renderRoutes } from 'react-router-config';
 import HeroCard from './HeroCard';
 import styled from 'styled-components';
 import { HeroContext, HeroDispatchContext } from 'context/Heros';
@@ -10,7 +11,9 @@ const HeroWrapper = styled.div`
   border-radius: 4px;
 `;
 
-interface HeroListProps {}
+interface HeroListProps {
+  route: any;
+}
 
 const HeroList = (props: HeroListProps) => {
   const heros = React.useContext(HeroContext);
@@ -41,6 +44,7 @@ const HeroList = (props: HeroListProps) => {
           <div>Fetching data...</div>
         )}
       </HeroWrapper>
+      {renderRoutes(props.route.routes)}
     </div>
   );
 };

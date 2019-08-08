@@ -1,7 +1,9 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import HeroList from 'components/Hero/HeroList';
-import HeroProfile from 'components/Hero/HeroProfile';
+import { BrowserRouter as Router } from 'react-router-dom';
+import { renderRoutes } from 'react-router-config';
+import routes from 'routing/routes';
+import { HeroProvider } from 'context/Heros';
 import './index.css';
 
 interface AppProps {}
@@ -10,8 +12,9 @@ const App = (props: AppProps) => {
   return (
     <div className="container mx-auto min-h-screen pt-24">
       <div className="mx-4">
-        <HeroList />
-        <HeroProfile />
+        <HeroProvider>
+          <Router>{renderRoutes(routes)}</Router>
+        </HeroProvider>
       </div>
     </div>
   );
