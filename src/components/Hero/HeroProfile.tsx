@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { HeroAttributes } from 'models/response';
 import { Button } from 'components/shared/Button';
 import CustomLoader from 'components/shared/Loader';
+import { RESOURCE_ENDPOINT } from 'constants/EnvSetting';
 
 const Attribute = styled.div`
   display: grid;
@@ -46,7 +47,7 @@ const HeroProfile = (props: HeroProfileProps) => {
     const fetchAttr = async () => {
       setFetching(true);
       const response = await fetch(
-        `http://hahow-recruit.herokuapp.com/heroes/${props.match.params.heroId}/profile`
+        `${RESOURCE_ENDPOINT}/heroes/${props.match.params.heroId}/profile`
       );
       const data: HeroAttributes = await response.json();
       updateAttr(data);

@@ -6,6 +6,7 @@ import CustomLoader from 'components/shared/Loader';
 import { useHero } from 'context/Heros';
 import { ActionTypes as opts } from 'constants/ActionTypes';
 import { Hero } from 'models/response';
+import { RESOURCE_ENDPOINT } from 'constants/EnvSetting';
 
 const HeroWrapper = styled.div`
   border: 4px solid #718096;
@@ -21,7 +22,7 @@ const HeroList = (props: HeroListProps) => {
   const [heros, dispatch] = useHero();
   React.useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch('http://hahow-recruit.herokuapp.com/heroes');
+      const response = await fetch(`${RESOURCE_ENDPOINT}/heroes`);
       const data: Hero[] = await response.json();
       dispatch({ type: opts.FETCH_HEROS, payload: data });
     };
