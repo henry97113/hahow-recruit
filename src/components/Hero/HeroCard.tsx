@@ -1,26 +1,8 @@
 import * as React from 'react';
-import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { fetchImage } from 'utilities/helpers';
-const imgPlaceholder = require('images/image placeholder.png');
+import { Card, CardImage, CardTitle } from 'components/shared/Card';
 const placeholder = require('images/placeholder.png');
-
-interface CardProps {
-  active?: boolean;
-}
-
-const Card = styled.div<CardProps>`
-  border-width: 4px;
-  border-style: solid;
-  border-color: ${props => (props.active ? 'tomato' : '#718096')};
-  border-radius: 4px;
-  color: ${props => (props.active ? 'tomato' : 'inherit')};
-`;
-
-const CardImage = styled.img`
-  max-width: 200px;
-  border-radius: 50%;
-`;
 
 interface HeroCardProps {
   id: string;
@@ -58,7 +40,7 @@ const HeroCard = (props: HeroCardProps) => {
         active={active}
       >
         <CardImage src={url || placeholder} />
-        <h2 className="mt-12 text-2xl">{props.name}</h2>
+        <CardTitle className="mt-12">{props.name}</CardTitle>
       </Card>
     </NavLink>
   );
