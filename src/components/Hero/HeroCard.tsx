@@ -1,7 +1,9 @@
 import * as React from 'react';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import { fetchImage } from 'utilities/helpers';
 const imgPlaceholder = require('images/image placeholder.png');
+const placeholder = require('images/placeholder.png');
 
 interface CardProps {
   active?: boolean;
@@ -27,8 +29,16 @@ interface HeroCardProps {
 }
 
 const HeroCard = (props: HeroCardProps) => {
+  const [url, setUrl] = React.useState('');
+  React.useEffect(() => {
+    const handleImageUrl = async () => {
+      const link = await fetchImage(props.image);
+      setUrl(link);
+    };
+    handleImageUrl();
+  }, []);
   const [active, setActive] = React.useState(false);
-  const oddEvent = (match, location) => {
+  const configureActive = (match, location) => {
     if (match) {
       setActive(match.isExact);
       return true;
@@ -41,17 +51,17 @@ const HeroCard = (props: HeroCardProps) => {
     <NavLink
       to={`/heros/${props.id}`}
       className="block w-full md:w-2/4 mb-2 lg:w-1/4 px-1"
-      isActive={oddEvent}
+      isActive={configureActive}
     >
       <Card
         className="p-8 flex flex-col justify-center items-center"
         active={active}
       >
-        <CardImage src={props.image || imgPlaceholder} />
+        <CardImage src={url || placeholder} />
         <h2 className="mt-12 text-2xl">{props.name}</h2>
       </Card>
     </NavLink>
   );
 };
 
-export default React.memo(HeroCard);
+export default HeroCard;
