@@ -39,7 +39,7 @@ const useHero = (): [Hero[], Dispatch] => {
 const heroReducer = (state: Hero[], action: Action): Hero[] => {
   switch (action.type) {
     case opts.FETCH_HEROS:
-      return [...state, ...action.payload];
+      return action.payload;
     default:
       throw new Error(`action type ${action.type} unhandled`);
   }

@@ -26,8 +26,10 @@ const HeroList = (props: HeroListProps) => {
       const data: Hero[] = await response.json();
       dispatch({ type: opts.FETCH_HEROS, payload: data });
     };
-    fetchData();
-  }, []);
+    if (heros.length === 0) {
+      fetchData();
+    }
+  }, [heros, dispatch]);
   return (
     <div className="mb-12">
       <HeroWrapper className="block p-4 md:flex md:flex-wrap mb-12 relative">
