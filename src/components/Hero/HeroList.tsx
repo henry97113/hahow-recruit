@@ -3,7 +3,7 @@ import { renderRoutes } from 'react-router-config';
 import HeroCard from './HeroCard';
 import styled from 'styled-components';
 import CustomLoader from 'components/shared/Loader';
-import { HeroContext, HeroDispatchContext } from 'context/Heros';
+import { useHero } from 'context/Heros';
 import { ActionTypes as opts } from 'constants/ActionTypes';
 import { Hero } from 'models/response';
 
@@ -18,8 +18,7 @@ interface HeroListProps {
 }
 
 const HeroList = (props: HeroListProps) => {
-  const heros = React.useContext(HeroContext);
-  const dispatch = React.useContext(HeroDispatchContext);
+  const [heros, dispatch] = useHero();
   React.useEffect(() => {
     const fetchData = async () => {
       const response = await fetch('http://hahow-recruit.herokuapp.com/heroes');

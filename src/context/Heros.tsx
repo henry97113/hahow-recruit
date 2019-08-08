@@ -4,7 +4,7 @@ import { ActionTypes as opts } from 'constants/ActionTypes';
 
 interface Action {
   type: string;
-  payload?: any;
+  payload: Hero[];
 }
 type Dispatch = (action: Action) => void;
 interface HeroProviderProps {
@@ -15,6 +15,26 @@ const HeroContext = React.createContext<Hero[] | undefined>(undefined);
 const HeroDispatchContext = React.createContext<Dispatch | undefined>(
   undefined
 );
+
+const useHeroState = () => {
+  const context = React.useContext(HeroContext);
+  if (context === undefined) {
+    throw new Error('useHeroState must be used within a HeroProvider');
+  }
+  return context;
+};
+
+const useHeroDispatch = () => {
+  const context = React.useContext(HeroDispatchContext);
+  if (context === undefined) {
+    throw new Error('useHeroDispatch must be used within a HeroProvider');
+  }
+  return context;
+};
+
+const useHero = (): [Hero[], Dispatch] => {
+  return [useHeroState(), useHeroDispatch()];
+};
 
 const heroReducer = (state: Hero[], action: Action): Hero[] => {
   switch (action.type) {
@@ -36,4 +56,4 @@ const HeroProvider = (props: HeroProviderProps) => {
   );
 };
 
-export { HeroContext, HeroDispatchContext, HeroProvider };
+export { useHero, HeroProvider };
