@@ -51,7 +51,11 @@ const HeroProfile = (props: HeroProfileProps) => {
       <div className="func min-h-full sm:w-auto sm:flex-1 flex justify-center items-center sm:justify-end sm:items-end">
         <div className="items">
           <p className="mb-4">剩餘點數：{pointsLeft}</p>
-          <Button paddingX="48px" onClick={saveAttr}>
+          <Button
+            paddingX="48px"
+            onClick={saveAttr}
+            disabled={pointsLeft !== 0}
+          >
             儲存
           </Button>
         </div>
