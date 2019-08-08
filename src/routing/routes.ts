@@ -7,16 +7,15 @@ const routes = [
   {
     path: '/',
     component: Root,
+    exact: true,
+  },
+  {
+    path: '/heros',
+    component: HeroList,
     routes: [
       {
-        path: '/heros',
-        component: HeroList,
-        routes: [
-          {
-            path: '/heros/:heroId',
-            component: HeroProfile,
-          },
-        ],
+        path: '/heros/:heroId',
+        component: HeroProfile,
       },
     ],
   },

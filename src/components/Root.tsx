@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { renderRoutes } from 'react-router-config';
+import { Link } from 'react-router-dom';
 
 interface RootProps {
   route: any;
@@ -7,10 +7,12 @@ interface RootProps {
 
 const Root = (props: RootProps) => {
   return (
-    <>
-      <h1 className="text-4xl text-center mb-12">SUPERHEROS!</h1>
-      {renderRoutes(props.route.routes)}
-    </>
+    <div className="absolute inset-0 flex flex-col justify-center items-center">
+      <h1 className="text-4xl">SUPERHEROS!</h1>
+      <Link to="/heros" className="block mb-12 text-blue-400 text-2xl">
+        Click me to see superheros!
+      </Link>
+    </div>
   );
 };
 
