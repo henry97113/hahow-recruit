@@ -73,14 +73,11 @@ const HeroProfile = (props: HeroProfileProps) => {
   };
   const saveAttr = () => {
     if (maxSum - currentSum !== 0) return;
-    fetch(
-      `https://hahow-recruit.herokuapp.com/heroes/${props.match.params.heroId}/profile`,
-      {
-        method: 'PATCH',
-        body: JSON.stringify(attr),
-        headers: { 'Content-Type': 'application/json; charset=utf-8' },
-      }
-    ).then(() => console.log('patched!'));
+    fetch(`${RESOURCE_ENDPOINT}/heroes/${props.match.params.heroId}/profile`, {
+      method: 'PATCH',
+      body: JSON.stringify(attr),
+      headers: { 'Content-Type': 'application/json; charset=utf-8' },
+    }).then(() => console.log('patched!'));
   };
   return (
     <div className="block border-solid border-4 border-gray-600 rounded p-8 sm:flex lg:px-32 relative">
