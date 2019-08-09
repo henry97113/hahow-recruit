@@ -3,6 +3,7 @@ import { renderRoutes } from 'react-router-config';
 import HeroCard from './HeroCard';
 import styled from 'styled-components';
 import CustomLoader from 'components/shared/Loader';
+import EasterEgg from 'components/EasterEgg';
 import { useHero } from 'context/Heros';
 import { ActionTypes as opts } from 'constants/ActionTypes';
 import { Hero } from 'models/response';
@@ -32,6 +33,7 @@ const HeroList = (props: HeroListProps) => {
   }, [heros, dispatch]);
   return (
     <div className="mb-12">
+      <EasterEgg pattern={[38, 38, 40, 40, 37, 39, 37, 39, 66, 65]} />
       <HeroWrapper className="block p-4 md:flex md:flex-wrap mb-12 relative">
         {heros.length > 0 ? (
           heros.map(hero => {
