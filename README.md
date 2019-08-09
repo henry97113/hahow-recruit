@@ -57,7 +57,7 @@ yarn build
   - 由於同時使用 styled-components 以及 tailwind 設定樣式，我將使用時機區分為
     - 「排版」使用 tailwind
     - 「樣式」使用 styled-components
-  - 雖然樣式都使用 styled-components 也都可以做到，但有時使用這種 utility-first CSS 在排版可以省下不少時間
+  - 雖然排版使用 styled-components 也可以做到相同效果，但使用這種 utility-first CSS 在排版可以省下不少調整的時間
 
 ### 專案部署
 
