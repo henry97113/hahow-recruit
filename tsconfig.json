@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist/",
+    "sourceMap": true,
+    "noImplicitAny": false,
+    "module": "commonjs",
+    "target": "esnext",
+    "jsx": "react",
+    "paths": {},
+    "baseUrl": "./src/",
+    "types": ["react", "react-dom", "node"],
+    "typeRoots": ["../node_modules/@types/", "types/"],
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true
+  },
+  "include": ["./src/**/*", "../node_modules/@types/**/*.d.ts"],
+  "exclude": ["../node_modules/@types/node/*.d.ts"]
+}
